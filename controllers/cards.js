@@ -104,7 +104,7 @@ export const createCardComment = async (req, res) => {
     card.AggregatedRating = (avg+card.AggregatedRating) / (card.Comments.length+1);
     await card.save({ validateBeforeSave: false });
     res.status(200).json({
-      success: true,
+      success: card,
     });
   };
 
