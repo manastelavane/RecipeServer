@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+/* eslint-disable linebreak-style */
+import mongoose from "mongoose";
 
 const recSchema = mongoose.Schema({
     level_0:{type:Number,default:0},
@@ -34,29 +35,29 @@ const recSchema = mongoose.Schema({
     Comments:[
         {
             user: {
-              type: mongoose.Schema.ObjectId,
-              ref: "users",
-              required: true,
+                type: mongoose.Schema.ObjectId,
+                ref: "users",
+                required: true,
             },
             name:{
-              type: String,
-              required: true,
+                type: String,
+                required: true,
             },
             rating: {
-              type: Number,
-              required: true,
+                type: Number,
+                required: true,
             },
             comment: {
-              type: String,
-              required: true,
+                type: String,
+                required: true,
             },
-          },
+        },
     ],
     CommentsCount:{
         type: Number,
         default:0,
-      },
-},{collection:'SortRec'});
+    },
+},{collection:"SortRec"});
 
-var Rec =  mongoose.model('SortRec', recSchema);
+var Rec =  mongoose.model("SortRec", recSchema);
 export default Rec;

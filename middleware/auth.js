@@ -1,28 +1,29 @@
+/* eslint-disable no-undef */
 import jwt from "jsonwebtoken";
 
 const secret = process.env.SECRET_HASH;
 
 const auth = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
-    const isCustomAuth = token.length < 500;
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        const isCustomAuth = token.length < 500;
 
-    let decodedData;
+        let decodedData;
 
-    if (token && isCustomAuth) {      
-      decodedData = jwt.verify(token, secret);
+        if (token && isCustomAuth) {
+            decodedData = jwt.verify(token, secret);
 
-      req.userId = decodedData?.id;
-    } else {
-      decodedData = jwt.decode(token);
+            req.userId = decodedData?.id;
+        } else {
+            decodedData = jwt.decode(token);
 
-      req.userId = decodedData?.sub;
-    }    
+            req.userId = decodedData?.sub;
+        }
 
-    next();
-  } catch (error) {
-    console.log(error);
-  }
+        next();
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export default auth;
